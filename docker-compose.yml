@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
 
   next-app:
-    image: cloudsmithy/smart-shopping-app
+    image: murphyz1024/smart-shopping-app
     container_name: next-frontend
     expose:
       - "3000"
