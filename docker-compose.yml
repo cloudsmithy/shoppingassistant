@@ -1,0 +1,28 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - next-app
+      - backend
+    restart: unless-stopped
+
+  next-app:
+    image: cloudsmithy/smart-shopping-app
+    container_name: next-frontend
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped
+
+  backend:
+    image: cloudsmithy/shoppingassistant-backend
+    container_name: backend-app
+    expose:
+      - "5005"
+    restart: unless-stopped
